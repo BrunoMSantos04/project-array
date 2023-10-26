@@ -1,14 +1,17 @@
 const list = document.querySelector('ul')
 const buttonShow = document.querySelector('.show-all')
+const buttonMap = document.querySelector('.map')
 let MyLi = ''
 
-function showAll() {
-    menuOptions.forEach((product) => {
+function showAll(productsArray) {
+    MyLi = ''
+
+    productsArray.forEach((product) => {
         MyLi += `
                 <li>
                     <img src=${product.src}>
                     <p>${product.name}</p>
-                    <p class="item-price">R$ ${product.price},00</p>
+                    <p class="item-price">R$ ${Math.round(product.price)},00</p>
                 </li>
                     ` 
     })
@@ -16,4 +19,17 @@ function showAll() {
 }
 
 
-buttonShow.addEventListener('click', showAll)
+
+function mapList (){
+    const NewPrices = menuOptions.map((product) => ({
+        ...product,
+        price: product.price * 0.9 
+    }))
+
+    showAll(NewPrices)
+}
+
+
+
+buttonShow.addEventListener('click', () => showAll(menuOptions)) //colocar uma funcao anonima na frente para o programa nao starta junto a funcao
+buttonMap.addEventListener('click', mapList)
