@@ -5,6 +5,10 @@ const buttonReduce = document.querySelector('.sum-all')
 const buttonFilter = document.querySelector('.filter')
 let MyLi = ''
 
+function showTexts (){
+
+}
+
 function formatCurrency(value){
     const newValue = value.toLocaleString('pt-br', {
         style: 'currency',
@@ -18,6 +22,7 @@ function showAll(productsArray) {
     MyLi = ''
 
     productsArray.forEach((product) => {
+        
         MyLi += `
                 <li>
                     <img src=${product.src}>
@@ -27,9 +32,8 @@ function showAll(productsArray) {
                     ` 
     })
     list.innerHTML = MyLi
+
 }
-
-
 
 function mapList () {
     const NewPrices = menuOptions.map((product) => ({
@@ -54,6 +58,7 @@ function filterList (){
 
     showAll(filterVegan)
 }
+
 
 buttonShow.addEventListener('click', () => showAll(menuOptions)) //colocar uma funcao anonima na frente para o programa nao starta junto a funcao
 buttonMap.addEventListener('click', mapList)
